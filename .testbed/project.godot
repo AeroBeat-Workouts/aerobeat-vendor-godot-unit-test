@@ -2,9 +2,9 @@ config_version=5
 
 [application]
 
-config/name="AeroBeat Vendor Testbed"
+config/name="AeroBeat Gut Testbed"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/aerobeat-vendor-godot-unit-test/plugin.cfg")
