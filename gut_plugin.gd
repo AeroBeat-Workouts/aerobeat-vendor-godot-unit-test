@@ -28,6 +28,9 @@ func _init():
 # remote file.  I don't want to delay startup for any reason.  Downloading
 # the remote file ocassionally is handled elsewhere.
 func _should_continue_loading_gut():
+	if(DisplayServer.get_name() == "headless"):
+		return true
+
 	_check_for_update = CheckForUpdateControl.instantiate()
 	var to_return = true
 
@@ -72,16 +75,19 @@ func _enter_tree():
 	# UPDATE:
 	# I added it back in when doing the window stuff.  Starting in a window
 	# made it angry (don't remember how) until I added it back in.
-	await get_tree().create_timer(1).timeout
+	var is_headless := DisplayServer.get_name() == "headless"
+	if(!is_headless):
+		await get_tree().create_timer(1).timeout
 	# ---
 
 	# Kick off a download of the remote versions file if it's been more than
 	# some number of days since we've downloaded it.
-	_check_for_update.visible = false
-	_bottom_panel.add_child(_check_for_update)
-	var days_since = _check_for_update.update_detector.get_days_since_last_fetch()
-	if(days_since >= 1):
-		_check_for_update.update_detector.check_for_update_with_fetch(true)
+	if(_check_for_update != null):
+		_check_for_update.visible = false
+		_bottom_panel.add_child(_check_for_update)
+		var days_since = _check_for_update.update_detector.get_days_since_last_fetch()
+		if(days_since >= 1):
+			_check_for_update.update_detector.check_for_update_with_fetch(true)
 
 	_bottom_panel.set_interface(get_editor_interface())
 	_bottom_panel.set_plugin(self)
@@ -137,7 +143,8 @@ func _exit_tree():
 		_gut_dock.queue_free()
 	remove_tool_menu_item("GUT") # made by _menu_mgr
 
-	_check_for_update.queue_free()
+	if(_check_for_update != null):
+		_check_for_update.queue_free()
 
 
 func show_output_panel():
