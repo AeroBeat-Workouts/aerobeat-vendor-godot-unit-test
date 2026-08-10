@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sduiv3grt5h4"]
 
-[ext_resource type="Script" uid="uid://bpj4k0w6ft550" path="res://addons/aerobeat-vendor-godot-unit-test/gui/update_required.gd" id="1_rmy01"]
+[ext_resource type="Script" path="res://addons/aerobeat-vendor-godot-unit-test/gui/update_required.gd" id="1_rmy01"]
 
 [node name="UpdateRequired" type="AcceptDialog" unique_id=125541884]
 oversampling_override = 1.0
