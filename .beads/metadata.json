@@ -2,6 +2,6 @@
   "database": "dolt",
   "backend": "dolt",
   "dolt_mode": "embedded",
-  "dolt_database": "oc",
-  "project_id": "f91b2e0d-8741-4b4a-8bba-9fbe64ad27aa"
+  "dolt_database": "aerobeat_vendor_godot_unit_test",
+  "project_id": "6b588ae5-9443-460c-89d8-f5b645297f93"
 }
